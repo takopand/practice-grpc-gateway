@@ -1,0 +1,6 @@
+#build stage
+FROM golang:1.22.5
+
+RUN apt update
+
+COPY ./server/src ./src

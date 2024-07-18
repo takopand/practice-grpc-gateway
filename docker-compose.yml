@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  protobuf-generater:
+    hostname: "protobuf-generater"
+    build:
+      context: .
+      dockerfile: ./Dockerfile.proto
+    tty: true
+    volumes:
+      - ./proto:/go/src
+  
+  server:
+    hostname: "server"
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+    tty: true
+    volumes:
+      - ./server/src:/go/src
+    ports:
+      - 8080:8080
+
+  grpc-client:
+    hostname: "grpc-client"
+    build:
+      context: .
+      dockerfile: ./Dockerfile.grpc-client
+    tty: true
+    volumes:
+      - ./grpc-client/src:/go/src
